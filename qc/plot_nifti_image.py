@@ -152,5 +152,5 @@ def plot_func(func_file):
 
 if __name__ == '__main__':
 
-    plot_anat('mri_data/anat.nii.gz')
-    plot_func('mri_data/func.nii.gz')
+    plot_anat('../demo/mri_data/anat.nii.gz')
+    plot_func('../demo/mri_data/func.nii.gz')
