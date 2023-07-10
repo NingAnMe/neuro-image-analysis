@@ -3,16 +3,16 @@ import ants
 """reference
 https://antspy.readthedocs.io/en/latest/registration.html
 
-python ants_apply_transforms.py moving_image.nii.gz fixed_image.nii.gz --input_transform transform.mat transform1.mat 
+python ants_apply_transforms.py --moving_image moving_image.nii.gz --fixed_image fixed_image.nii.gz --output_image output_image.nii.gz --input_transform transform.mat transform1.mat 
 """
 
 # 创建一个命令行解析器
 parser = argparse.ArgumentParser(description='ANTS registration script')
 
 # 添加需要的命令行参数
-parser.add_argument('moving_image', type=str, help='path to moving image')
-parser.add_argument('fixed_image', type=str, help='path to fixed image')
-parser.add_argument('output_image', type=str, help='path to output image')
+parser.add_argument('--moving_image', type=str, help='path to moving image')
+parser.add_argument('--fixed_image', type=str, help='path to fixed image')
+parser.add_argument('--output_image', type=str, help='path to output image')
 parser.add_argument('--input_transform', type=str, nargs='+', default=['transform.mat'],
                     help='path to input transform files')
 
