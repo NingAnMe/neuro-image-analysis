@@ -14,7 +14,7 @@ def get_index_in_faces(voxel: int, faces: np.ndarray):
     return np.unique(faces[face_index])
 
 
-def get_surface_roi(voxel_seed, surface, ring, output_dir):
+def get_surface_roi(hemi, voxel_seed, surface, ring, output_dir):
     xyzs, faces = nib.freesurfer.read_geometry(surface)
 
     assert ring <= 10
@@ -29,8 +29,9 @@ def get_surface_roi(voxel_seed, surface, ring, output_dir):
         print(voxels)
         roi = np.zeros((len(xyzs)), dtype=int)
         roi[voxels] = 1
-        roi_file = os.path.join(output_dir, f'ROI_seed-{voxel_seed}_{ring_num}-ring.curv')
+        roi_file = os.path.join(output_dir, f'ROI_hemi-{hemi}_seed-{voxel_seed}_{ring_num}-ring.curv')
         nib.freesurfer.write_morph_data(roi_file, roi)
+        print(f'>>> {roi_file}')
 
 
 def load_surface_roi(roi_file):
@@ -39,9 +40,14 @@ def load_surface_roi(roi_file):
 
 
 if __name__ == '__main__':
-    voxel_index_ = 33144
-    surface_ = '/usr/local/freesurfer600/subjects/fsaverage6/surf/lh.white'  # any white、pial、sphere
-    ring_ = 10  # 1 or 2
+    freesurfer_home = '/usr/local/freesurfer600'
 
+    hemi = 'lh'
+    roi_seed = 33144
+    fs_res = 'fsaverage6'
+    ring_num = 3  # from 1 to ring_num
     result_path = ''
-    get_surface_roi(voxel_index_, surface_, ring_, result_path)
+
+
+    geo_surface = f'{freesurfer_home}/subjects/{fs_res}/surf/{hemi}.white'  # any white、pial、sphere
+    get_surface_roi(hemi, roi_seed, geo_surface, ring_num, result_path)
