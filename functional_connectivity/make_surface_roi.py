@@ -1,4 +1,4 @@
-# python3
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 # -------------------------------
 # @Author : Ning An        @Email : Ning An <ninganme0317@gmail.com>
@@ -29,7 +29,7 @@ def get_surface_roi(hemi, voxel_seed, surface, ring, output_dir):
         print(voxels)
         roi = np.zeros((len(xyzs)), dtype=int)
         roi[voxels] = 1
-        roi_file = os.path.join(output_dir, f'ROI_hemi-{hemi}_seed-{voxel_seed}_{ring_num}-ring.curv')
+        roi_file = os.path.join(output_dir, f'ROI_hemi-{hemi}_seed-{voxel_seed}_{ring_num}-ring.roi')
         nib.freesurfer.write_morph_data(roi_file, roi)
         print(f'>>> {roi_file}')
 

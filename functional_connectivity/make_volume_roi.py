@@ -1,3 +1,8 @@
+#! /usr/bin/env python3
+# -*- coding: utf-8 -*-
+# -------------------------------
+# @Author : Ning An        @Email : Ning An <ninganme0317@gmail.com>
+
 import nibabel as nib
 import numpy as np
 
